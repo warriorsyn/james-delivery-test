@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "james-teste"
+  "defaultProject": "james-teste",
+  "cli": {
+    "analytics": "59de3914-a516-4296-8ae8-3f6bf35f49d4"
+  }
 }
