@@ -1,0 +1,10 @@
+.toolbar {
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    padding: 10px;
+    height: 50px;
+  }
+}
