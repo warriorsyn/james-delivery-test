@@ -5,9 +5,16 @@ import { PresentationComponent } from './presentation.component';
 const routes: Routes = [
   {
     path: '',
-    component: PresentationComponent
+    component: PresentationComponent,
+    children: [
+      {
+        path: 'establishments',
+        loadChildren: () => import('./establishments/establishments.module').then(m => m.EstablishmentsModule)
+      }
+    ]
   }
 ];
+
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
