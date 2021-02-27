@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { EstablishmentsComponent } from './establishments.component';
+import { EstablishmentListComponent } from './establishment-list.component';
 
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./establishment-list/establishment-list.module').then(m => m.EstablishmentListModule)
+    component: EstablishmentListComponent
   }
 ];
 
@@ -13,4 +13,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class EstablishmentsRoutingModule { }
+export class EstablishmentListRoutingModule { }
