@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { PresentationComponent } from './presentation.component';
 import { PresentationRoutingModule } from './presentation-routing.module';
 import { CardModule } from './shared/components/card/card.module';
+import { SectionModule } from './shared/components/section/section.module';
 
 
 
@@ -11,7 +12,8 @@ import { CardModule } from './shared/components/card/card.module';
   imports: [
     CommonModule,
     PresentationRoutingModule,
-    CardModule
+    CardModule,
+    SectionModule
   ]
 })
 export class PresentationModule { }
