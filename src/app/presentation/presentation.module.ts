@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PresentationComponent } from './presentation.component';
 import { PresentationRoutingModule } from './presentation-routing.module';
+import { CardModule } from './shared/components/card/card.module';
 
 
 
@@ -9,7 +10,8 @@ import { PresentationRoutingModule } from './presentation-routing.module';
   declarations: [PresentationComponent],
   imports: [
     CommonModule,
-    PresentationRoutingModule
+    PresentationRoutingModule,
+    CardModule
   ]
 })
 export class PresentationModule { }
