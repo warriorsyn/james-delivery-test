@@ -74,6 +74,7 @@ app-establishment-form {
       &__control {
         display: flex;
         justify-content: space-between;
+        flex-wrap: wrap;
         &__input {
           display: flex;
           flex-direction: column;
@@ -97,6 +98,20 @@ app-establishment-form {
               #f8f9fd;
             color: #7b7e8c;
             padding: 10px;
+          }
+
+          &--double {
+            display: flex;
+
+            input {
+              &:last-child {
+                width: 66px;
+              }
+            }
+
+            > input {
+              margin-right: 10px;
+            }
           }
         }
       }
