@@ -4,7 +4,7 @@
     <div class="establishment-form__container">
       <div class="establishment-form__header">
         <div class="establishment-form__image">
-          <i class="fas fa-arrow-left"></i>
+          <i [routerLink]="['..']" class="fas fa-arrow-left"></i>
           <img src="assets/images/subway.png" alt="">
         </div>
 
@@ -47,6 +47,64 @@
 
       </div>
 
+
+      <div class="establishment-form__form">
+
+        <div class="establishment-form__form__divider">
+          <span>Financeiro</span>
+          <div class="establishment-form__form__divider--divider"></div>
+        </div>
+
+        <div class="establishment-form__form__control">
+          <div class="establishment-form__form__control__input">
+            <label for="">Banco</label>
+            <select name="" id="">
+              <option value="">Banco do brasil</option>
+            </select>
+          </div>
+
+          <div class="establishment-form__form__control__input">
+            <label for="">Tipo de conta</label>
+            <select name="" id="">
+              <option value="">Conta corrente</option>
+              <option value="">Conta poupança</option>
+            </select>
+          </div>
+
+          <div class="establishment-form__form__control__input">
+            <label for="">CPF / CNPJ</label>
+            <input type="text" placeholder="CPF / CNPJ">
+          </div>
+
+          <div class="establishment-form__form__control__input" style="margin-top: 20px;">
+            <label for="">Agência</label>
+            <div class="establishment-form__form__control__input--double">
+              <input type="text">
+              <input type="text">
+            </div>
+          </div>
+
+          <div class="establishment-form__form__control__input" style="margin-top: 20px;">
+            <label for="">Agência</label>
+            <div class="establishment-form__form__control__input--double">
+              <input type="text">
+              <input type="text">
+            </div>
+          </div>
+
+          <div class="establishment-form__form__control__input" style="margin-top: 20px;">
+            <label for="">Saque automático ?</label>
+            <div class="establishment-form__form__control__input">
+              <label for=""></label>
+              <select name="" id="">
+                <option value="">Sim</option>
+                <option value="">Não</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
   </app-card>
 </section>
