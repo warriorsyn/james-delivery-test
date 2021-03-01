@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { EstablishmentModel } from 'src/app/core/domain/establishment/establishment.model';
+import { GetAllEstablishmentUsecase } from 'src/app/core/usecases/establishment/get-all.usecase';
 
 @Component({
   selector: 'app-establishment-list',
@@ -7,9 +9,11 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class EstablishmentListComponent implements OnInit {
 
-  constructor() { }
+  public establishments: Array<EstablishmentModel> = [];
+
+  constructor(private getAllUsecase: GetAllEstablishmentUsecase) { }
 
   ngOnInit(): void {
+    this.getAllUsecase.execute().subscribe(item => this.establishments.push(item));
   }
-
 }

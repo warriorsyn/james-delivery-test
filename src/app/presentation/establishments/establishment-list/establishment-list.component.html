@@ -1,5 +1,3 @@
 <section app-section>
-  <app-establishment-card></app-establishment-card>
-  <app-establishment-card></app-establishment-card>
-  <app-establishment-card></app-establishment-card>
+  <app-establishment-card [establishment]="establishment" *ngFor="let establishment of establishments"></app-establishment-card>
 </section>
