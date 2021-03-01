@@ -14,6 +14,8 @@ export class EstablishmentListComponent implements OnInit {
   constructor(private getAllUsecase: GetAllEstablishmentUsecase) { }
 
   ngOnInit(): void {
-    this.getAllUsecase.execute().subscribe(item => this.establishments.push(item));
+    setTimeout(() => {
+      this.getAllUsecase.execute().subscribe(item => this.establishments.push(item));
+    }, 1000)
   }
 }
