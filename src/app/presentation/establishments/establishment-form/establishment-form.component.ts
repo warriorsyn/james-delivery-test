@@ -1,5 +1,4 @@
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { EstablishmentModel } from 'src/app/core/domain/establishment/establishment.model';
@@ -14,7 +13,10 @@ import { UpdateEstablishmentUsecase } from 'src/app/core/usecases/establishment/
 })
 export class EstablishmentFormComponent implements OnInit {
 
-  @ViewChild('agencyDigit') agencyDigit!: HTMLInputElement;
+  @ViewChild('agencyDigit') agencyDigit!: ElementRef;
+
+  @ViewChild('account') account!: ElementRef;
+  @ViewChild('accountDigit') accountDigit!: ElementRef;
 
   public establishment!: EstablishmentModel;
 
@@ -58,7 +60,7 @@ export class EstablishmentFormComponent implements OnInit {
     }
   }
 
-  public save(data: EstablishmentModel) {
+  public save(data: EstablishmentModel): void {
     this.update.execute(data).subscribe(w => {
       console.log("sucesso")
     })
@@ -66,16 +68,28 @@ export class EstablishmentFormComponent implements OnInit {
     console.log('teste', data)
   }
 
-  public getEstablishment() {
+  public getEstablishment(): void {
     this.activatedRouter.paramMap.subscribe(param => {
       console.log('ola', param.get("id"))
       this.getById.execute(param.get('id') ?? '').subscribe(item => { this.establishment = item; console.log('rola', item) })
     })
   }
 
-  public handleAngency(value: string) {
+  public handleAngency(value: string): void {
     if (value.length === 4) {
-      // this.agencyDigit.focus();
+      this.agencyDigit.nativeElement.focus();
+    }
+  }
+
+  public handleAgencyDigit(value: string): void {
+    if (value.length === 1) {
+      this.account.nativeElement.focus();
+    }
+  }
+
+  public handleAccount(value: string) {
+    if (value.length === 5) {
+      this.accountDigit.nativeElement.focus();
     }
   }
 }

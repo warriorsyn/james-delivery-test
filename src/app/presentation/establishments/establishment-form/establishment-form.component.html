@@ -79,16 +79,16 @@
           <div class="establishment-form__form__control__input" style="margin-top: 20px;">
             <label for="">Agência</label>
             <div class="establishment-form__form__control__input--double">
-              <input formControlName="agency" type="text" (input)="handleAngency(establishmentForm.get('agency').value)">
-              <input #agencyDigit formControlName="agency_digit" type="text">
+              <input formControlName="agency" type="text" (input)="handleAngency(establishmentForm.get('agency')?.value)" maxlength="4">
+              <input #agencyDigit formControlName="agency_digit" type="text" (input)="handleAgencyDigit(establishmentForm.get('agency_digit')?.value)" maxlength="1">
             </div>
           </div>
 
           <div class="establishment-form__form__control__input" style="margin-top: 20px;">
             <label for="">Conta</label>
             <div class="establishment-form__form__control__input--double">
-              <input formControlName="account" type="text">
-              <input formControlName="account_digit" type="text">
+              <input #account formControlName="account" type="text" (input)="handleAccount(establishmentForm.get('account')?.value)" maxlength="5">
+              <input #accountDigit formControlName="account_digit" type="text">
             </div>
           </div>
 
