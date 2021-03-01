@@ -76,7 +76,7 @@ export class EstablishmentFormComponent implements OnInit {
 
   public getEstablishment(): void {
     this.activatedRouter.paramMap.subscribe(param => {
-      this.getById.execute(param.get('id') ?? '').subscribe(item => { this.establishment = item; console.log('rola', item) })
+      this.getById.execute(param.get('id') ?? '').subscribe(item => this.establishment = item);
     })
   }
 

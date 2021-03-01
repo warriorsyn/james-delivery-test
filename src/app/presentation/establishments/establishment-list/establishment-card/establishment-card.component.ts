@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { EstablishmentModel } from 'src/app/core/domain/establishment/establishment.model';
 
 @Component({
@@ -7,16 +7,9 @@ import { EstablishmentModel } from 'src/app/core/domain/establishment/establishm
   styleUrls: ['./establishment-card.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class EstablishmentCardComponent implements OnInit {
-
+export class EstablishmentCardComponent {
 
   @Input()
   establishment!: EstablishmentModel;
-
-  constructor() {
-  }
-
-  ngOnInit(): void {
-  }
 
 }
