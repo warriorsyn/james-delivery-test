@@ -4,6 +4,7 @@ import { EstablishmentFormComponent } from './establishment-form.component';
 import { EstablishmentFormRoutingModule } from './establishment-form-routing.module';
 import { SectionModule } from '../../shared/components/section/section.module';
 import { CardModule } from '../../shared/components/card/card.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -13,7 +14,8 @@ import { CardModule } from '../../shared/components/card/card.module';
     CommonModule,
     EstablishmentFormRoutingModule,
     SectionModule,
-    CardModule
+    CardModule,
+    ReactiveFormsModule
   ]
 })
 export class EstablishmentFormModule { }

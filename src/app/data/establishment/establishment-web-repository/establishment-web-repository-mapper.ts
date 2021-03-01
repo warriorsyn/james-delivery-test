@@ -20,6 +20,14 @@ export class EstablishmentMockRepositoryMapper extends Mapper<
       registered: param.registered,
       latitude: param.latitude,
       longitude: param.longitude,
+      account: param.account,
+      bank: param.bank,
+      agency: param.agency,
+      agency_digit: param.agency_digit,
+      account_digit: param.account_digit,
+      account_type: param.account_type,
+      withdraw: param.withdraw,
+      cpf_cnpj: param.cpf_cnpj
     };
   }
   mapTo(param: EstablishmentModel): EstablishmentWebEntity {
@@ -35,6 +43,14 @@ export class EstablishmentMockRepositoryMapper extends Mapper<
       registered: param.registered,
       latitude: param.latitude,
       longitude: param.longitude,
+      account: param.account,
+      bank: param.bank,
+      agency: param.agency,
+      agency_digit: param.agency_digit,
+      account_digit: param.account_digit,
+      account_type: param.account_type,
+      withdraw: param.withdraw,
+      cpf_cnpj: param.cpf_cnpj
     };
   }
 }

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Observable, from, observable } from 'rxjs';
+import { Observable, from, observable, Subject } from 'rxjs';
 
 import { HttpClient } from '@angular/common/http';
-import { map, flatMap } from 'rxjs/operators';
+import { map, flatMap, filter } from 'rxjs/operators';
 import { EstablishmentRepository } from 'src/app/core/repositories/establishment/establishment.repositories';
 import { EstablishmentMockRepositoryMapper } from './establishment-web-repository-mapper';
 import { EstablishmentModel } from 'src/app/core/domain/establishment/establishment.model';
@@ -13,6 +13,7 @@ import { EstablishmentWebEntity } from './establishment-web-entity';
   providedIn: 'root',
 })
 export class EstablishmentWebRepository extends EstablishmentRepository {
+
 
   public mapper = new EstablishmentMockRepositoryMapper();
 
@@ -27,17 +28,21 @@ export class EstablishmentWebRepository extends EstablishmentRepository {
 
     if (establishments) {
 
-      this.getAllByApi().subscribe(item => {
-        localStorage.setItem('@establishments', JSON.stringify(item || []));
-      });
+      this.mapObject();
       return;
     }
   }
 
-  getAll(): Observable<EstablishmentModel> {
-    const establishments: EstablishmentWebEntity[] = this.parseJSON<EstablishmentWebEntity[]>(localStorage.getItem('@establishments'));
+  getAll(params: void): Observable<EstablishmentModel> {
+    let establishments: EstablishmentWebEntity[] = this.parseJSON<EstablishmentWebEntity[]>(localStorage.getItem('@establishments'));
 
     return from(establishments).pipe(map(this.mapper.mapFrom))
+  }
+
+  getById(params: string): Observable<EstablishmentModel> {
+    const establishments: EstablishmentWebEntity[] = this.parseJSON(this.getFromLocalStorage());
+
+    return from(establishments).pipe(filter(e => e.id === params)).pipe(map(this.mapper.mapFrom));
   }
 
   getAllByApi(): Observable<EstablishmentModel[]> {
@@ -46,5 +51,35 @@ export class EstablishmentWebRepository extends EstablishmentRepository {
 
   parseJSON<T>(object: any): T {
     return JSON.parse(object)
+  }
+
+  mapObject(save: boolean = true): Observable<EstablishmentModel[]> {
+    let mappedReturnal = new Subject<EstablishmentModel[]>();
+    this.getAllByApi().subscribe(item => {
+      const rest = {
+        account: '',
+        bank: '',
+        agency: '',
+        agency_digit: '',
+        account_digit: '',
+        account_type: '',
+        withdraw: false,
+        cpf_cnpj: ''
+      }
+
+      const mapped = item.map(est => ({ ...est, ...rest })) as EstablishmentModel[];
+      mappedReturnal.next(mapped);
+      if (save) {
+        localStorage.setItem('@establishments', JSON.stringify(mapped || []));
+      }
+
+
+    });
+
+    return mappedReturnal.asObservable();
+  }
+
+  getFromLocalStorage(): EstablishmentWebEntity[] {
+    return localStorage.getItem('@establishments') as unknown as EstablishmentWebEntity[];
   }
 }

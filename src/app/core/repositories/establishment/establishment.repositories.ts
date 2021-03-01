@@ -3,5 +3,6 @@ import { EstablishmentModel } from '../../domain/establishment/establishment.mod
 
 
 export abstract class EstablishmentRepository {
-  abstract getAll(): Observable<EstablishmentModel>;
+  abstract getAll(params: void): Observable<EstablishmentModel>;
+  abstract getById(params: string): Observable<EstablishmentModel>;
 }

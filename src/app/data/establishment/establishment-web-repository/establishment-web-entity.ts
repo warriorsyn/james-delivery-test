@@ -10,4 +10,12 @@ export interface EstablishmentWebEntity {
   registered: string,
   latitude: string,
   longitude: string,
+  bank: string,
+  agency: string,
+  agency_digit: string,
+  account: string,
+  account_digit: string,
+  account_type: string,
+  withdraw: boolean,
+  cpf_cnpj: string
 }
