@@ -27,7 +27,8 @@ export class EstablishmentMockRepositoryMapper extends Mapper<
       account_digit: param.account_digit,
       account_type: param.account_type,
       withdraw: param.withdraw,
-      cpf_cnpj: param.cpf_cnpj
+      cpf_cnpj: param.cpf_cnpj,
+      city: param.city
     };
   }
   mapTo(param: EstablishmentModel): EstablishmentWebEntity {
@@ -50,7 +51,8 @@ export class EstablishmentMockRepositoryMapper extends Mapper<
       account_digit: param.account_digit,
       account_type: param.account_type,
       withdraw: param.withdraw,
-      cpf_cnpj: param.cpf_cnpj
+      cpf_cnpj: param.cpf_cnpj,
+      city: param.city
     };
   }
 }

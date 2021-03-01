@@ -17,5 +17,6 @@ export interface EstablishmentModel {
   account_digit: string,
   account_type: string,
   withdraw: boolean,
-  cpf_cnpj: string
+  cpf_cnpj: string;
+  city: string;
 }

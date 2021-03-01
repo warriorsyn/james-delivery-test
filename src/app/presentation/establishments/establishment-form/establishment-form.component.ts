@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { EstablishmentModel } from 'src/app/core/domain/establishment/establishment.model';
 import { GetByIdEstablishmentUsecase } from 'src/app/core/usecases/establishment/get-by-id.usecase';
 import { UpdateEstablishmentUsecase } from 'src/app/core/usecases/establishment/update.usecase';
@@ -22,7 +23,11 @@ export class EstablishmentFormComponent implements OnInit {
 
   public establishmentForm!: FormGroup;
 
-  constructor(private activatedRouter: ActivatedRoute, private getById: GetByIdEstablishmentUsecase, private fb: FormBuilder, private update: UpdateEstablishmentUsecase) { }
+  constructor(private activatedRouter: ActivatedRoute,
+    private getById: GetByIdEstablishmentUsecase,
+    private fb: FormBuilder,
+    private update: UpdateEstablishmentUsecase,
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.getEstablishment();
@@ -39,14 +44,15 @@ export class EstablishmentFormComponent implements OnInit {
       account_digit: [''],
       account_type: [''],
       withdraw: [true],
-      cpf_cnpj: ['']
+      cpf_cnpj: [''],
+      picture: ['']
     })
 
     if (this.establishment) {
       this.establishmentForm.setValue({
         id: this.establishment.id,
         name: this.establishment.name,
-        city: '',
+        city: this.establishment.city,
         address: this.establishment.address,
         bank: this.establishment.bank,
         agency: this.establishment.agency,
@@ -55,22 +61,21 @@ export class EstablishmentFormComponent implements OnInit {
         account_digit: this.establishment.account_digit,
         account_type: this.establishment.account_type,
         withdraw: this.establishment.withdraw,
-        cpf_cnpj: this.establishment.cpf_cnpj
+        cpf_cnpj: this.establishment.cpf_cnpj,
+        picture: this.establishment.picture
       })
     }
   }
 
   public save(data: EstablishmentModel): void {
-    this.update.execute(data).subscribe(w => {
-      console.log("sucesso")
+    this.update.execute(data).subscribe(() => {
+      this.getEstablishment();
+      this.toastr.success('Estabelecimento atualizado com sucesso!', 'Atualizado');
     })
-
-    console.log('teste', data)
   }
 
   public getEstablishment(): void {
     this.activatedRouter.paramMap.subscribe(param => {
-      console.log('ola', param.get("id"))
       this.getById.execute(param.get('id') ?? '').subscribe(item => { this.establishment = item; console.log('rola', item) })
     })
   }

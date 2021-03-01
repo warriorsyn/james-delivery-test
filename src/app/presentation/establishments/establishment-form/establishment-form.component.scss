@@ -83,6 +83,9 @@ app-establishment-form {
             margin-bottom: 7px;
           }
 
+          &.withdraw {
+            width: 100%;
+          }
           input,
           select {
             height: 40px;

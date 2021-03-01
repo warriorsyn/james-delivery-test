@@ -33,7 +33,12 @@
           <div class="establishment-form__form__control__input">
             <label for="">cidade</label>
             <select formControlName="city" name="" id="">
-              <option value="">Subway</option>
+              <option value="ARACAJU">Aracaju</option>
+              <option value="SALVADOR">Salvador</option>
+              <option value="FORTALEZA">Fortaleza</option>
+              <option selected value="CURITIBA">Curitiba</option>
+              <option value="MANAUS">Manaus</option>
+              <option value="RECIFE">Refice</option>
             </select>
           </div>
 
@@ -56,8 +61,8 @@
           <div class="establishment-form__form__control__input">
             <label for="">Banco</label>
             <select formControlName="bank" name="" id="">
-              <option value="BANCO_DO_BRASIL">Banco do brasil</option>
-              <option value="SDANTANDER">Santander</option>
+              <option selected value="BANCO_DO_BRASIL">Banco do brasil</option>
+              <option value="SANTANDER">Santander</option>
               <option value="CAIXA">Caixa</option>
               <option value="ITAU">Itaú</option>
             </select>
@@ -66,14 +71,14 @@
           <div class="establishment-form__form__control__input">
             <label for="">Tipo de conta</label>
             <select formControlName="account_type" name="" id="">
-              <option value="CONTA_CORRENTE">Conta corrente</option>
+              <option selected value="CONTA_CORRENTE">Conta corrente</option>
               <option value="CONTA_POUPANCA">Conta poupança</option>
             </select>
           </div>
 
           <div class="establishment-form__form__control__input">
             <label for="">CPF / CNPJ</label>
-            <input type="text" placeholder="CPF / CNPJ" formControlName="cpf_cnpj">
+            <input type="text" placeholder="CPF / CNPJ" formControlName="cpf_cnpj" [mask]="'000.000.000-00||00.000.000/0000-00'" />
           </div>
 
           <div class="establishment-form__form__control__input" style="margin-top: 20px;">
@@ -88,15 +93,15 @@
             <label for="">Conta</label>
             <div class="establishment-form__form__control__input--double">
               <input #account formControlName="account" type="text" (input)="handleAccount(establishmentForm.get('account')?.value)" maxlength="5">
-              <input #accountDigit formControlName="account_digit" type="text">
+              <input #accountDigit formControlName="account_digit" type="text" maxlength="1">
             </div>
           </div>
 
           <div class="establishment-form__form__control__input" style="margin-top: 20px;">
             <label for="">Saque automático ?</label>
-            <div class="establishment-form__form__control__input">
+            <div class="establishment-form__form__control__input withdraw">
               <label for=""></label>
-              <select formControlName="withdraw" name="" id="">
+              <select  formControlName="withdraw" name="" id="">
                 <option [value]="true">Sim</option>
                 <option [value]="false">Não</option>
               </select>

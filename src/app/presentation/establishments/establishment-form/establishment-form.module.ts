@@ -5,6 +5,7 @@ import { EstablishmentFormRoutingModule } from './establishment-form-routing.mod
 import { SectionModule } from '../../shared/components/section/section.module';
 import { CardModule } from '../../shared/components/card/card.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgxMaskModule } from 'ngx-mask';
 
 
 
@@ -15,7 +16,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     EstablishmentFormRoutingModule,
     SectionModule,
     CardModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxMaskModule
   ]
 })
 export class EstablishmentFormModule { }

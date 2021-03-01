@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Observable, from, observable, Subject } from 'rxjs';
+import { Observable, from, observable, Subject, of } from 'rxjs';
 
 import { HttpClient } from '@angular/common/http';
-import { map, flatMap, filter } from 'rxjs/operators';
+import { map, filter } from 'rxjs/operators';
 import { EstablishmentRepository } from 'src/app/core/repositories/establishment/establishment.repositories';
 import { EstablishmentMockRepositoryMapper } from './establishment-web-repository-mapper';
 import { EstablishmentModel } from 'src/app/core/domain/establishment/establishment.model';
@@ -80,7 +80,7 @@ export class EstablishmentWebRepository extends EstablishmentRepository {
    * Update an establishment
    * @param params Establishment model that will be updated
    */
-  update(params: EstablishmentModel): Observable<void> {
+  update(params: EstablishmentModel): Observable<EstablishmentModel> {
     const establishments: EstablishmentWebEntity[] = this.parseJSON(this.getFromLocalStorage());
 
     for (let i = 0; i < establishments.length; i++) {
@@ -91,7 +91,7 @@ export class EstablishmentWebRepository extends EstablishmentRepository {
 
     localStorage.setItem('@establishments', JSON.stringify(establishments));
 
-    return new Observable();
+    return of(params);
   }
 
   /**
@@ -109,7 +109,8 @@ export class EstablishmentWebRepository extends EstablishmentRepository {
         account_digit: '',
         account_type: '',
         withdraw: false,
-        cpf_cnpj: ''
+        cpf_cnpj: '',
+        city: ''
       }
 
       const mapped = item.map(est => ({ ...est, ...rest })) as EstablishmentModel[];

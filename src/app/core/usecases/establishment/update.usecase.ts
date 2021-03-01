@@ -8,10 +8,10 @@ import { EstablishmentRepository } from '../../repositories/establishment/establ
 @Injectable({
   providedIn: 'root',
 })
-export class UpdateEstablishmentUsecase implements UseCase<EstablishmentModel, void> {
+export class UpdateEstablishmentUsecase implements UseCase<EstablishmentModel, EstablishmentModel> {
   constructor(private establishmentRepository: EstablishmentRepository) { }
 
-  execute(params: EstablishmentModel): Observable<void> {
+  execute(params: EstablishmentModel): Observable<EstablishmentModel> {
     return this.establishmentRepository.update(params);
   }
 }
