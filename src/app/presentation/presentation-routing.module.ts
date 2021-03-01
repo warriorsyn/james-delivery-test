@@ -3,7 +3,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { PresentationComponent } from './presentation.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: '/establishments', pathMatch: 'full' },
   {
+
     path: '',
     component: PresentationComponent,
     children: [
@@ -12,7 +14,8 @@ const routes: Routes = [
         loadChildren: () => import('./establishments/establishments.module').then(m => m.EstablishmentsModule)
       }
     ]
-  }
+  },
+  { path: '**', redirectTo: '/establishments', pathMatch: 'full' },
 ];
 
 
