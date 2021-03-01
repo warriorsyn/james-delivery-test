@@ -15,6 +15,7 @@ import { EstablishmentWebEntity } from './establishment-web-entity';
 export class EstablishmentWebRepository extends EstablishmentRepository {
 
 
+
   public mapper = new EstablishmentMockRepositoryMapper();
 
   constructor(private http: HttpClient) {
@@ -51,6 +52,21 @@ export class EstablishmentWebRepository extends EstablishmentRepository {
 
   parseJSON<T>(object: any): T {
     return JSON.parse(object)
+  }
+
+  update(params: EstablishmentModel): Observable<void> {
+    debugger
+    const establishments: EstablishmentWebEntity[] = this.parseJSON(this.getFromLocalStorage());
+
+    for (let i = 0; i < establishments.length; i++) {
+      if (establishments[i].id === params.id) {
+        establishments[i] = params;
+      }
+    }
+
+    localStorage.setItem('@establishments', JSON.stringify(establishments));
+    console.log(establishments, 'ola', params)
+    return new Observable();
   }
 
   mapObject(save: boolean = true): Observable<EstablishmentModel[]> {

@@ -1,7 +1,7 @@
 <section app-section>
 
   <app-card>
-    <form [formGroup]="establishmentForm" class="establishment-form__container">
+    <form [formGroup]="establishmentForm" class="establishment-form__container" (submit)="save(establishmentForm.value)">
       <div class="establishment-form__header">
         <div class="establishment-form__image">
           <i [routerLink]="['../..']" class="fas fa-arrow-left"></i>
@@ -56,15 +56,18 @@
           <div class="establishment-form__form__control__input">
             <label for="">Banco</label>
             <select formControlName="bank" name="" id="">
-              <option value="">Banco do brasil</option>
+              <option value="BANCO_DO_BRASIL">Banco do brasil</option>
+              <option value="SDANTANDER">Santander</option>
+              <option value="CAIXA">Caixa</option>
+              <option value="ITAU">Itaú</option>
             </select>
           </div>
 
           <div class="establishment-form__form__control__input">
             <label for="">Tipo de conta</label>
             <select formControlName="account_type" name="" id="">
-              <option value="">Conta corrente</option>
-              <option value="">Conta poupança</option>
+              <option value="CONTA_CORRENTE">Conta corrente</option>
+              <option value="CONTA_POUPANCA">Conta poupança</option>
             </select>
           </div>
 
@@ -76,8 +79,8 @@
           <div class="establishment-form__form__control__input" style="margin-top: 20px;">
             <label for="">Agência</label>
             <div class="establishment-form__form__control__input--double">
-              <input formControlName="agency" type="text">
-              <input formControlName="agency_digit" type="text">
+              <input formControlName="agency" type="text" (input)="handleAngency(establishmentForm.get('agency').value)">
+              <input #agencyDigit formControlName="agency_digit" type="text">
             </div>
           </div>
 
@@ -101,6 +104,9 @@
           </div>
         </div>
 
+        <div class="establishment-form__form__button">
+          <button type="submit">Salvar</button>
+        </div>
       </div>
     </form>
   </app-card>

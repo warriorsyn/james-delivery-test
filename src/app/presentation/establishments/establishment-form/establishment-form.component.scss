@@ -115,6 +115,22 @@ app-establishment-form {
           }
         }
       }
+
+      &__button {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 94px;
+
+        button {
+          border: 0;
+          padding: 1rem 2rem 1rem 2rem;
+          background: #28cc9b;
+          border-radius: 100px;
+          color: white;
+          text-transform: uppercase;
+          cursor: pointer;
+        }
+      }
     }
   }
 }
